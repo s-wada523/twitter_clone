@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build: ./docker/web
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/twitter_pj
+    working_dir: /var/www/twitter_pj
+    privileged: true
+    depends_on:
+      - db
+  db:
+    build: ./docker/db
+    ports:
+      - 3366:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: twitter
+      MYSQL_PASSWORD: twitter
+      MYSQL_DATABASE: twitter_db
+    volumes:
+      - db-data:/var/lib/mysql
+  s3:
+    image: minio/minio
+    ports:
+      - "9001:9000"
+    volumes:
+      - ./docker/minio/data:/data
+    command: server /data
+    environment:
+      MINIO_ACCESS_KEY: local_test_s3_access_key
+      MINIO_SECRET_KEY: local_test_s3_secret_key
+volumes:
+  db-data:
+    driver: local
+
