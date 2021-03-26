@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>マロンさんじゃなくて俺のもの</title>
+        <title>Twitter Clone</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -68,12 +68,15 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
+                    <!-- ユーザーは認証されている -->
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">ログイン</a>
+                        <!-- ログインをクリックすると，/loginへ遷移 -->
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">アカウント作成</a>
+                            <!-- アカウント作成をクリックすると，/registerへ遷移 -->
                         @endif
                     @endauth
                 </div>
@@ -81,10 +84,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Twitter Cloneをはじめよう
                 </div>
 
-                <div class="links">
+                <!-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -92,7 +95,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </body>
