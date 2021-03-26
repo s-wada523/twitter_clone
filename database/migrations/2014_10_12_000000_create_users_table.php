@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('name')->null()->comment('ユーザ名');
             $table->string('profile_image')->nullable()->comment('プロフィール画像');
             // null値を許容している
-            $table->string('email')->unique();
+            // $table->string('email')->unique();
+            $table->string('email', 191)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
