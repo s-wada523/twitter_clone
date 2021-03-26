@@ -84,7 +84,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Twitter Cloneをはじめよう
+                    Twitter Clone
                 </div>
 
                 <!-- <div class="links">
