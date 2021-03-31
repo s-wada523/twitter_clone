@@ -9,6 +9,7 @@
                         <div class="card-haeder p-3 w-100 d-flex">
                             <!-- プロフ画像 -->
                             <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
+                            <!-- <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50"> -->
                             <div class="ml-2 d-flex flex-column">
                                 <!-- ユーザー名 -->
                                 <p class="mb-0">{{ $user->name }}</p>
@@ -29,13 +30,15 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                        <!-- <button type="submit" class="btn btn-danger">フォロー解除</button> -->
+                                        <button type="submit" class="btn btn-primary">フォロー中</button>
                                     </form>
                                 @else
                                     <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                         {{ csrf_field() }}
-
-                                        <button type="submit" class="btn btn-primary">フォローする</button>
+                                        <!-- <button type="submit" class="btn btn-primary">フォローする</button> -->
+                                        <!-- <button type="submit" class="btn btn-link">フォローする</button> -->
+                                        <button type="submit" class="btn btn-outline-primary">フォローする</button>
                                     </form>
                                 @endif
                             </div>

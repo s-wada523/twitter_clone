@@ -26,8 +26,6 @@ class UsersController extends Controller
         return view('users.index', [
             'all_users'  => $all_users
         ]);
-
-        
     }
 
     public function following($id)
@@ -39,12 +37,6 @@ class UsersController extends Controller
             'all_users'  => $all_users
         ]);
     }
-
-
-
-
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -76,8 +68,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     // 詳細画面
-    public function show(User $user, Tweet $tweet, Follower $follower, $id)
-    // public function show(User $user, Tweet $tweet, Follower $follower)
+    // public function show(User $user, Tweet $tweet, Follower $follower, $id)
+    public function show(User $user, Tweet $tweet, Follower $follower)
     {
         $login_user = auth()->user();
         // 以下の2行では上手くいかない
@@ -87,12 +79,20 @@ class UsersController extends Controller
 
         // 以下の6行を実行すると，user->nameとuser->screen_nameとプロフィールを編集するボタンが表示されない
         // また，フォロー・フォロー解除ボタンをクリックするとnot found
-        $is_following = $login_user->isFollowing($id);
-        $is_followed = $login_user->isFollowed($id);
-        $timelines = $tweet->getUserTimeLine($id);
-        $tweet_count = $tweet->getTweetCount($id);
-        $follow_count = $follower->getFollowCount($id);
-        $follower_count = $follower->getFollowerCount($id);
+        // $is_following = $login_user->isFollowing($id);
+        // $is_followed = $login_user->isFollowed($id);
+        // $timelines = $tweet->getUserTimeLine($id);
+        // $tweet_count = $tweet->getTweetCount($id);
+        // $follow_count = $follower->getFollowCount($id);
+        // $follower_count = $follower->getFollowerCount($id);
+
+
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $timelines = $tweet->getUserTimeLine($user->id);
+        $tweet_count = $tweet->getTweetCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
 
         // 以下の6行を実行すると
         // isFollowing() must be of the type integer, null given, called in /var/www/twitter_pj/app/Http/Controllers/UsersController.php on line 95
@@ -125,7 +125,9 @@ class UsersController extends Controller
 
 
     // 編集画面の取得
-    public function edit(User $user, $id)
+    // public function edit(User $user, $id)
+    public function edit(User $user)
+
     {
         //空のレコードを取得
         // $user = User::where('id', $id)->first();

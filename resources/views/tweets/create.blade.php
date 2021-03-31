@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create</div>
+                <div class="card-header">投稿</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('tweets.store') }}">
@@ -32,7 +32,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-right">
-                                <p class="mb-4 text-danger">140文字以内</p>
+                                <!-- <p class="mb-4 text-danger">140文字以内</p> -->
+                                <p class="mb-4 text-danger"></p>
                                 <button type="submit" class="btn btn-primary">
                                     ツイートする
                                 </button>

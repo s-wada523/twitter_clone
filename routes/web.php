@@ -22,24 +22,23 @@ Route::get('hello', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'TweetsController@index');
+
 
 Route::group(['middleware' => 'auth'], function() {
     // ログインしたときにしかアクセスできない
 
     // ユーザ関連
-    // Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
     // 以下を正規なものにしたい
-    Route::group(['prefix' => 'users'], function() {
-        Route::get('/', 'UsersController@index');
-        Route::get('/{id}', 'UsersController@show');
-        Route::get('/following', 'UsersController@following');
-        // Route::get('/{id}/following', 'UsersController@following');
-        Route::get('/{id}/edit', 'UsersController@edit');
-
-    //     Route::get('update', 'UsersController@update');
-    });
+    // Route::group(['prefix' => 'users'], function() {
+    //     Route::get('/', 'UsersController@index');
+    //     Route::get('/{id}', 'UsersController@show');
+    //     Route::get('/following', 'UsersController@following');
+    //     Route::get('/{id}/edit', 'UsersController@edit');
+    // });
 
     // 検索画面を表示
     Route::get('/serch', 'UsersController@serch');
@@ -81,9 +80,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
     // ツイート関連
-    // Route::resource('tweets', 'TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-    Route::get('tweets', 'TweetsController@index');
-    Route::get('tweets/{id}', 'TweetsController@show');
+    Route::resource('tweets', 'TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    // Route::get('tweets', 'TweetsController@index');
+    // Route::get('tweets/{id}', 'TweetsController@show');
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);

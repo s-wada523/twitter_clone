@@ -82,10 +82,18 @@
                                     <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
                                     <!-- ツイートするをクリックすると，tweets/createへ遷移 -->
                                 </li>
-                                <!-- プロフ画像 -->
+
+                                <!-- プロフィール -->
                                 <li class="nav-item">
-                                    <img src="{{ auth()->user()->profile_image }}" class="rounded-circle" width="50" height="50">
+                                    <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
                                 </li>
+
+                                 <!-- プロフ画像 -->
+                                 <li class="nav-item">
+                                    <img src="{{ auth()->user()->profile_image }}" class="rounded-circle" width="50" height="50">
+                                    <!-- <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50"> -->
+                                </li>
+
                                 <!-- ユーザー名 -->
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -94,7 +102,7 @@
                                     <!-- ログインしているユーザーネームをクリックすると，新たな以下の項目が表示 -->
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
+                                        <!-- <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a> -->
                                         <!-- プロフィールをクリックすると，users/{id}へ遷移 -->
                                         <a href="{{ route('logout') }}" class="dropdown-item"
                                         onclick="event.preventDefault();

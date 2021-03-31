@@ -19,6 +19,7 @@ class TweetsController extends Controller
         $user = auth()->user();
         // $follow_ids = (new Follower())->followingIds($user->id);
         $follow_ids = $follower->followingIds($user->id);
+        // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
         // $timelines = (new Tweet())->getTimelines($user->id, $following_ids);
@@ -60,13 +61,15 @@ class TweetsController extends Controller
     }
 
     //ツイート詳細画面
-    public function show(Tweet $tweet, Comment $comment, $id)
+    // public function show(Tweet $tweet, Comment $comment, $id)
+    public function show(Tweet $tweet, Comment $comment)
+
     {
         $user = auth()->user();
         // $tweets = $tweet->getTweet($id);
-        $tweet = $tweet->getTweet($id);
+        $tweet = $tweet->getTweet($user->id);
         // $tweet = $tweet->getTweet($tweet->id);
-        $comments = $comment->getComments($id);
+        $comments = $comment->getComments($user->id);
         // $comments = $comment->getComments($tweet->id);
 
         return view('tweets.show', [
