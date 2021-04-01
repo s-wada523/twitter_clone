@@ -29,13 +29,17 @@
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 
-                                            <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                            <!-- <button type="submit" class="btn btn-danger">フォロー解除</button> -->
+                                            <button type="submit" class="btn btn-primary">フォロー中</button>
+
                                         </form>
                                     @else
                                         <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
 
-                                            <button type="submit" class="btn btn-primary">フォローする</button>
+                                            <!-- <button type="submit" class="btn btn-primary">フォローする</button> -->
+                                            <button type="submit" class="btn btn-outline-primary">フォローする</button>
+
                                         </form>
                                     @endif
 
@@ -55,17 +59,21 @@
 
                                 <!-- <a href="{{ url('users') }}">ユーザーの一覧 <i class="fas fa-users" class="fa-fw"></i> </a> -->
                                 <!-- <a href="{{ url('users/' .auth()->user()->id .'/following') }}">{{ $follow_count }}</a> -->
-                                <a href="{{ url('users/following') }}">{{ $follow_count }}</a>
+
+                                <!-- <a href="{{ url('users/following') }}">{{ $follow_count }}</a> -->
+
                                 <!-- <a href="{{ url('users') }}">{{ $follow_count }}</a> -->
                                 <!-- ユーザーの一覧をクリックすると，/usersへ遷移 -->
                                 <!-- <a href="following">{{ $follow_count }}</a> -->
-                                <!-- <span>{{ $follow_count }}</span> -->
+                                <span>{{ $follow_count }}</span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">フォロワー数</p>
-                                <a href="{{ url('users') }}">{{ $follower_count }}</a>
+
+                                <!-- <a href="{{ url('users') }}">{{ $follower_count }}</a> -->
+
                                 <!-- <a href="followme">{{ $follower_count }}</a> -->
-                                <!-- <span>{{ $follower_count }}</span> -->
+                                <span>{{ $follower_count }}</span>
                             </div>
                         </div>
                     </div>

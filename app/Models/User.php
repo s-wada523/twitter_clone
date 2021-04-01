@@ -44,8 +44,15 @@ class User extends Authenticatable
     {
         // paginate(5)：ページごとに表示したいアイテム数が5
         // 引数で受け取ったログインしているユーザを除くユーザを1ページにつき5名取得
+        // return $this->Where('id', '<>', $user_id)->paginate(5);
         return $this->Where('id', '<>', $user_id)->paginate(5);
+
     }
+
+    // public function getAllUsersNotPaginate(Int $user_id)
+    // {
+    //     return $this->Where('id', '<>', $user_id);
+    // }
 
     // 追加したメソッド
     public function getSearchedUsers(String $keyword_name)

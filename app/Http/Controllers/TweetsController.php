@@ -27,7 +27,6 @@ class TweetsController extends Controller
         // logger(gettype($following_ids));
         // logger($timelines);
         // logger("aiueo");
-      
         return view('tweets.index', [
             'user'      => $user,
             'timelines' => $timelines
